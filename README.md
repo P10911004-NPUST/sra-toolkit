@@ -43,12 +43,12 @@ Download data from NCBI-SRA
 ### Official approach (prefetch + fasterq-dump)
     $ mkdir sra
     $ for i in `cat SRR_Acc_List.txt`; do
-        prefetch ${i};
+        prefetch --max-size u ${i};
       done;
     
     $ mkdir fastq
     $ for j in ./sra/*.sra; do
-        fasterq-dump -O fastq ${j};
+        fasterq-dump --threads 40 --progress --force -O ../fastq ${j};
       done;
 
 
